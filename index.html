@@ -4,13 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-<form>
-    <select>
+<form name="form" onchange="parseRSS()">
+    <select name="url">
         <option disabled selected>Select rss</option>
-        <option id="1" value="">1</option>
-        <option id="2" value="">2</option>
+        <option value="https://www.flickr.com/services/feeds/photos_public.gne?id=136046346@N06&lang=en-us&format=atom">1</option>
+        <option value="https://www.flickr.com/services/feeds/photos_public.gne?id=33616145@N00&lang=en-us&format=atom">2</option>
     </select>
 </form>
 
