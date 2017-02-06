@@ -1,4 +1,6 @@
- function parseRSS() {
+var countImage = [];
+countImage[0] = 0;
+function parseRSS() {
         var form = document.forms[0];
         var select = form.elements.url;
         var urlSelected;
@@ -41,7 +43,6 @@
 
     function buildRSS(temp) {
         var items = temp;
-        console.log(items[0].authorName);
         console.log(items.length);
         var table = document.getElementById('rss');
         table.setAttribute('width','auto');
@@ -60,15 +61,15 @@
 
 function getImages() {
     var imagesDoc = document.querySelectorAll('img');
+    countImage.push(imagesDoc.length);
     var x = {};
     var images = [];
-    for (var i = 0; i < imagesDoc.length; i++) {
+    for (var i = 0; i < countImage[countImage.length - 1] - countImage[countImage.length - 2]; i++) {
         var image = {};
         image.title = imagesDoc[i].alt;
         image.uri = imagesDoc[i].src;
         images.push(image);
     }
     x.images = images;
-    console.log(JSON.stringify(x.images));
     localStorage.setItem("images", JSON.stringify(x.images));
 }
