@@ -53,6 +53,44 @@
             var date = new Date(items[i].published);
             newCell0.innerHTML = "<b>" + items[i].title + "</b>" + "<hr>" + date + "<br>" + items[i].content;
         }
+        addImagesToCollection();
+}
+
+ var Image = Backbone.Model.extend({
+     emptyURL: "/images/image.jpg",
+     emptyTitle: "No photo",
+     initialize: function() {
+         if (!this.get("uri")) {
+             this.set({"uri": this.emptyURL});
+         }
+         if (!this.get("title")) {
+             this.set({"title": this.emptyTitle});
+         }
+     },
+
+     getTitle : function() {
+        return this.get("title");
+     },
+     getUri: function () {
+         return this.get("uri")
+     }
+ });
+
+ var ImagesCollection = Backbone.Collection.extend({
+     model: Image
+ });
+
+ var images = new ImagesCollection;
+
+ function addImagesToCollection() {
+    var imagesDoc = document.querySelectorAll('img');
+    for (var i = 0; i < imagesDoc.length; i++) {
+        var image = new Image;
+        image.set({title: imagesDoc[i].alt, uri: imagesDoc[i].src});
+        images.push(image);
     }
+ }
 
+ var ImagesView = Backbone.View.extend({
 
+ });
