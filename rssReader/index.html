@@ -3,16 +3,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>RSS Reader</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 <form name="form" onchange="parseRSS()">
+    <div class="styled-select">
     <select name="url">
         <option disabled selected>Select rss</option>
         <option value="https://www.flickr.com/services/feeds/photos_public.gne?id=136046346@N06&lang=en-us&format=atom">1</option>
         <option value="https://www.flickr.com/services/feeds/photos_public.gne?id=33616145@N00&lang=en-us&format=atom">2</option>
     </select>
+    </div>
 </form>
 
 <table id="rss"></table>
