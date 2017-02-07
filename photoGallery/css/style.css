@@ -1,0 +1,46 @@
+#bigImage {
+    background-size: cover;
+    width: 60%;
+    height: 400px;
+    margin: 0 auto;
+}
+#bigImage img {
+    width: 100%;
+    height: 100%;
+}
+
+#smallImage1 {
+    width: 20%;
+    float:left;
+    margin-left: calc(100% / 10);
+}
+
+#smallImage1 img {
+    width: 100%;
+    height: 100%;
+}
+
+#smallImage2 {
+    width: 20%;
+    float:left;
+    margin-left: calc(100% / 10);
+
+}
+
+#smallImage2 img {
+    width: 100%;
+    height: 100%;
+}
+
+#smallImage3 {
+    width: 20%;
+    float:left;
+    margin-left: calc(100% / 10);
+
+}
+
+#smallImage3 img {
+    width: 100%;
+    height: 100%;
+}
+
