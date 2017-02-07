@@ -1,11 +1,9 @@
-
-
-
 var Image = Backbone.Model.extend({
     emptyURL: "/images/image.jpg",
     emptyTitle: "No photo",
     defaults: {
-        visibleImage: 0
+        visibleImage: 0,
+        preview: 0
     },
     initialize: function(options) {
         if (!this.get("uri")) {
@@ -21,6 +19,9 @@ var Image = Backbone.Model.extend({
     },
     getUri: function () {
         return this.get("uri")
+    },
+    getPreview: function () {
+        return this.get("preview")
     }
 });
 
@@ -42,6 +43,12 @@ var ImagesCollection = Backbone.Collection.extend({
 
     setNext: function() {
         this.setIndex(this.get('visibleImage') + 1);
+    },
+    setPreview: function () {
+        this.set('preview', 1);
+    },
+    setNoPreview: function () {
+        this.set('preview', 0);
     }
 });
 
@@ -71,7 +78,7 @@ var ContactView = Backbone.View.extend({
 
 
 var ImagesView = Backbone.View.extend({
-    el: $("#gallery"),
+    el: $("#bigImage"),
     initialize: function () {
         addImagesToCollection();
         this.collection = images;
@@ -82,10 +89,6 @@ var ImagesView = Backbone.View.extend({
         var that = this;
         console.log(this.collection.models[0].getTitle());
         _.each(this.collection.models, function (item) { // проход по колекции моделей
-            if(item.getTitle() == "Inside the Ice Cave") {
-                item.set({visibleImage: 1});
-
-            }
             that.renderContact(item);
         }, this);
     },
@@ -93,17 +96,101 @@ var ImagesView = Backbone.View.extend({
         var contactView = new ContactView({
             model: item
         });
-        if (contactView.model.get('visibleImage') == 1) { //проверка видно или нет
+        if (contactView.model.get('visibleImage') != 1) { //проверка видно или нет
            // this.$el.append(contactView.render().el); //все изображения
-            this.$el.html('<img src="' + contactView.model.get('uri') + '" />');
+            this.$el.html('<img src="' + contactView.model.get('uri') + '" + id="bigImage" />');
         }
 
     }
+});
 
+
+
+
+var PreviewOne = Backbone.View.extend({
+    el: $("#smallImage1"),
+    initialize: function () {
+        this.collection = images;
+        console.log(this.collection);
+        this.render();
+    },
+    render: function () {
+        var that = this;
+        console.log(this.collection.models[0].getTitle());
+        _.each(this.collection.models, function (item) { // проход по колекции моделей
+            that.renderContact(item);
+        }, this);
+    },
+    renderContact: function (item) {
+        var contactView = new ContactView({
+            model: item
+        });
+        if (contactView.model.get('visibleImage') != 1) { //проверка видно или нет
+            // this.$el.append(contactView.render().el); //все изображения
+            this.$el.html('<img src="' + contactView.model.get('uri') +  '" + id="smallImage1" />');
+        }
+
+    }
+});
+
+var PreviewTwo = Backbone.View.extend({
+    el: $("#smallImage2"),
+    initialize: function () {
+        this.collection = images;
+        console.log(this.collection);
+        this.render();
+    },
+    render: function () {
+        var that = this;
+        console.log(this.collection.models[0].getTitle());
+        _.each(this.collection.models, function (item) { // проход по колекции моделей
+            that.renderContact(item);
+        }, this);
+    },
+    renderContact: function (item) {
+        var contactView = new ContactView({
+            model: item
+        });
+        if (contactView.model.get('visibleImage') != 1) { //проверка видно или нет
+            // this.$el.append(contactView.render().el); //все изображения
+            this.$el.html('<img src="' + contactView.model.get('uri') + '" + id="smallImage2" />');
+        }
+
+    }
+});
+
+
+var PreviewThree = Backbone.View.extend({
+    el: $("#smallImage3"),
+    initialize: function () {
+        this.collection = images;
+        console.log(this.collection);
+        this.render();
+    },
+    render: function () {
+        var that = this;
+        console.log(this.collection.models[0].getTitle());
+        _.each(this.collection.models, function (item) { // проход по колекции моделей
+            that.renderContact(item);
+        }, this);
+    },
+    renderContact: function (item) {
+        var contactView = new ContactView({
+            model: item
+        });
+        if (contactView.model.get('visibleImage') != 1) { //проверка видно или нет
+            // this.$el.append(contactView.render().el); //все изображения
+            this.$el.html('<img src="' + contactView.model.get('uri') + '" + id="smallImage3"/>');
+        }
+
+    }
 });
 
 
 var directory = new ImagesView();
 
+var prew1 = new PreviewOne();
 
+var prew2 = new PreviewTwo();
+var prew3 = new PreviewThree();
 
