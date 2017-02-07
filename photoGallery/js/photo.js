@@ -19,6 +19,9 @@ var Image = Backbone.Model.extend({
     getUri: function () {
         return this.get("uri")
     },
+    setUri: function (uri) {
+        return this.set("uri", uri)
+    },
     getPreview: function () {
         return this.get("preview")
     },
@@ -81,23 +84,28 @@ var ImageView = Backbone.View.extend({
 });
 
 
-PreviewOne = Backbone.View.extend({
+var PreviewOne = Backbone.View.extend({
     initialize: function () {
+        images.models[0].setPrev();
+        images.models[1].setPrev();
+        images.models[2].setPrev();
         this.collection = images;
         console.log(this.collection);
-        this.collection.models[0].setPrev();
-        this.collection.models[1].setPrev();
-        this.collection.models[2].setPrev();
         this.render();
 
     },
     render: function () {
         var imgs = [];
+        var i1 = 1;
+        var i2 = 2;
+        var i3 = 3;
+
         _.each(this.collection.models, function (item) {
             if (item.getPreview() == 1) {
                 var contactView = new ContactView({
                     model: item
                 });
+                console.log(contactView);
                 imgs.push(contactView);
             }
         }, this);
@@ -115,17 +123,34 @@ PreviewOne = Backbone.View.extend({
         document.getElementById('smallImage3').addEventListener( "click", (function () {
             document.getElementById('bigImage').innerHTML = document.getElementById('smallImage3').innerHTML
         }) );
-
-
-
+        document.getElementById('rightButton').addEventListener( "click", (function () {
+            if (i3 < images.models.length) {
+                imgs[0].model.setUri(imgs[1].model.get('uri'));
+                imgs[1].model.setUri(imgs[2].model.get('uri'));
+                imgs[2].model.setUri(images.models[i3].getUri());
+                document.getElementById('smallImage3').innerHTML = ('<img src="' + imgs[2].model.get('uri') + '"  />');
+                document.getElementById('smallImage2').innerHTML = ('<img src="' + imgs[1].model.get('uri') + '"  />');
+                document.getElementById('smallImage1').innerHTML = ('<img src="' + imgs[0].model.get('uri') + '"  />');
+                i3++;
+            }
+        }));
+        document.getElementById('leftButton').addEventListener( "click", (function () {
+            if (i3 > 3) {
+                imgs[2].model.setUri(imgs[1].model.get('uri'));
+                imgs[1].model.setUri(imgs[0].model.get('uri'));
+                imgs[0].model.setUri(images.models[i3-4].getUri());
+                document.getElementById('smallImage3').innerHTML = ('<img src="' + imgs[2].model.get('uri') + '"  />');
+                document.getElementById('smallImage2').innerHTML = ('<img src="' + imgs[1].model.get('uri') + '"  />');
+                document.getElementById('smallImage1').innerHTML = ('<img src="' + imgs[0].model.get('uri') + '"  />');
+                i3--;
+            }
+        }));
     }
 });
-
 
 
 
 var directory = new ImageView();
 
 var prew1 = new PreviewOne();
-
 
