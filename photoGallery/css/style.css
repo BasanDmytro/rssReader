@@ -17,6 +17,7 @@
     width: 20%;
     float:left;
     margin-left: calc(100% / 10);
+    height: 90px;
 }
 
 #smallImage1 img {
@@ -28,6 +29,7 @@
     width: 20%;
     float:left;
     margin-left: calc(100% / 10);
+    height: 90px;
 
 }
 
@@ -40,7 +42,7 @@
     width: 20%;
     float:left;
     margin-left: calc(100% / 10);
-
+    height: 90px;
 }
 
 #smallImage3 img {
