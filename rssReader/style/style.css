@@ -18,8 +18,8 @@ table {
     width: 240px;
     height: 34px;
     overflow: hidden;
-    background: url(1.jpg) no-repeat right #ddd;
-    border: 2px solid black;
+    background: url(../images/1.jpg) no-repeat right #ddd;
+    border: 2px solid black;s
 }
 
 #button {
