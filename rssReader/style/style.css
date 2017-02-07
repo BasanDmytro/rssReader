@@ -19,7 +19,7 @@ table {
     height: 34px;
     overflow: hidden;
     background: url(../images/1.jpg) no-repeat right #ddd;
-    border: 2px solid black;s
+    border: 2px solid black;
 }
 
 #button {
@@ -27,7 +27,6 @@ table {
     margin-top: 38px;
     margin-right: 10%;
     margin-left: 5px;
-
     width: 15%;
     height: 40px;
 }
