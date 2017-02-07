@@ -1,5 +1,6 @@
 var countImage = [];
 countImage[0] = 0;
+document.getElementById('button').style.visibility="hidden";
 function parseRSS() {
         var form = document.forms[0];
         var select = form.elements.url;
@@ -55,6 +56,7 @@ function parseRSS() {
             newCell0.innerHTML = "<b>" + items[i].title + "</b>" + "<hr>" + date + "<br>" + items[i].content;
         }
         getImages();
+        document.getElementById('button').style.visibility="visible";
 }
 
 
@@ -72,4 +74,8 @@ function getImages() {
     }
     x.images = images;
     localStorage.setItem("images", JSON.stringify(x.images));
+}
+
+function goToGallery() {
+    window.open('file:///Users/admin/Desktop/JS/rssReader/photoGallery/index.html');
 }

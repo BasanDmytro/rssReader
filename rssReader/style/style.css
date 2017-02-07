@@ -22,3 +22,12 @@ table {
     border: 2px solid black;
 }
 
+#button {
+    float: right;
+    margin-top: 38px;
+    margin-right: 10%;
+    margin-left: 5px;
+
+    width: 15%;
+    height: 40px;
+}

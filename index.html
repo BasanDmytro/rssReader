@@ -4,10 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <title>RSS Reader</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="style/style.css">
 </head>
 <body>
 <form name="form" onchange="parseRSS()">
+    <button id="button" onclick="goToGallery()">Go to Photo Gallery</button>
     <div class="styled-select">
     <select name="url">
         <option disabled selected>Select rss</option>
@@ -15,12 +16,13 @@
         <option value="https://www.flickr.com/services/feeds/photos_public.gne?id=33616145@N00&lang=en-us&format=atom">2</option>
     </select>
 </div>
+
 </form>
 
 <table id="rss"></table>
 <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
 <script type="text/javascript" src="underscore-min.js"></script>
 <script type="text/javascript" src="backbone.js"></script>
-<script src="index.js"></script>
+<script src="js/index.js"></script>
 </body>
 </html>
