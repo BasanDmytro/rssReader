@@ -52,7 +52,6 @@ function addImagesToCollection() {
     }
 }
 
-
 var ContactView = Backbone.View.extend({
     tagName: "article",
     className: "contact-container",
@@ -64,25 +63,16 @@ var ContactView = Backbone.View.extend({
     }
 });
 
-
 var ImageView = Backbone.View.extend({
-    el: $("#bigImage"),
     initialize: function () {
         addImagesToCollection();
-        this.collection = images;
-        console.log(this.collection);
-        this.collection.models[0].setView(1);
         this.render();
     },
     render: function () {
-        _.each(this.collection.models, function (item) {
-            if (item.get('visibleImage') == 1) {
-                this.$el.html('<img src="' + item.get('uri') + '" + id="bigImage" />');
-            }
-        }, this);
+        document.getElementById('big').src =  images.models[0].get('uri');
+        document.getElementById('lab').innerHTML = images.models[0].get('title');
     }
 });
-
 
 var PreviewOne = Backbone.View.extend({
     initialize: function () {
@@ -93,39 +83,40 @@ var PreviewOne = Backbone.View.extend({
     render: function () {
         var i3 = 3;
 
-        document.getElementById('smallImage1').innerHTML = ('<img src="' + images.models[i3-3].get('uri') + '"  />');
-        document.getElementById('smallImage2').innerHTML = ('<img src="' + images.models[i3-2].get('uri') + '"  />');
-        document.getElementById('smallImage3').innerHTML = ('<img src="' + images.models[i3-1].get('uri') + '"  />');
+        document.getElementById('small1').src = images.models[i3-3].get('uri');
+        document.getElementById('small2').src = images.models[i3-2].get('uri');
+        document.getElementById('small3').src = images.models[i3-1].get('uri');
 
-        document.getElementById('smallImage1').addEventListener( "click", (function () {
-            document.getElementById('bigImage').innerHTML = document.getElementById('smallImage1').innerHTML
-            console.log(document.getElementById('bigImage').innerHTML)
+        document.getElementById('small1').addEventListener( "click", (function () {
+            document.getElementById('big').src = document.getElementById('small1').src;
+            document.getElementById('lab').innerHTML = images.models[i3-3].getTitle();
         }) );
-        document.getElementById('smallImage2').addEventListener( "click", (function () {
-            document.getElementById('bigImage').innerHTML = document.getElementById('smallImage2').innerHTML
+        document.getElementById('small2').addEventListener( "click", (function () {
+            document.getElementById('big').src = document.getElementById('small2').src;
+            document.getElementById('lab').innerHTML = images.models[i3-2].getTitle();
         }) );
-        document.getElementById('smallImage3').addEventListener( "click", (function () {
-            document.getElementById('bigImage').innerHTML = document.getElementById('smallImage3').innerHTML
+        document.getElementById('small3').addEventListener( "click", (function () {
+            document.getElementById('big').src = document.getElementById('small3').src;
+            document.getElementById('lab').innerHTML = images.models[i3-1].getTitle();
         }) );
         document.getElementById('rightButton').addEventListener( "click", (function () {
             if (i3 < images.models.length) {
-                document.getElementById('smallImage3').innerHTML = ('<img src="' + images.models[i3].getUri() + '"  />');
-                document.getElementById('smallImage2').innerHTML = ('<img src="' + images.models[i3-1].getUri() + '"  />');
-                document.getElementById('smallImage1').innerHTML = ('<img src="' + images.models[i3-2].getUri() + '"  />');
+                document.getElementById('small3').src =  images.models[i3].getUri();
+                document.getElementById('small2').src =  images.models[i3-1].getUri();
+                document.getElementById('small1').src =  images.models[i3-2].getUri();
                 i3++;
             }
         }));
         document.getElementById('leftButton').addEventListener( "click", (function () {
             if (i3 > 3) {
-                document.getElementById('smallImage3').innerHTML = ('<img src="' + images.models[i3 - 2].getUri() + '"  />');
-                document.getElementById('smallImage2').innerHTML = ('<img src="' + images.models[i3 - 3].getUri() + '"  />');
-                document.getElementById('smallImage1').innerHTML = ('<img src="' + images.models[i3 - 4].getUri() + '"  />');
+                document.getElementById('small3').src = images.models[i3 - 2].getUri();
+                document.getElementById('small2').src = images.models[i3 - 3].getUri();
+                document.getElementById('small1').src = images.models[i3 - 4].getUri();
                 i3--;
             }
         }));
     }
 });
-
 
 var directory = new ImageView();
 
